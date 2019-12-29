@@ -8,21 +8,20 @@ export class ProductTable extends Component {
     this.sortByColumnAndDirection = this.sortByColumnAndDirection.bind(this);
     this.state = {
       sort: {
-        column: 'name',
+        column: 'price',
         direction: 'desc',
       },
     };
   }
   sortByColumnAndDirection(objetA, objetB) {
-    let isDesc = this.state.sort.direction === 'desc' ? 1 : -1;
+    let isDesc = this.state.sort.direction === 'asc' ? 1 : -1;
     let [a, b] = [
       objetA[this.state.sort.column],
       objetB[this.state.sort.column],
     ];
     if (this.state.sort.column === 'price') {
       [a, b] = [a, b].map((value) =>
-        // eslint-disable-next-line no-useless-escape
-        parseFloat(value.replace(/[^\d\.]/g, ''), 10),
+        parseFloat(value.replace(/[^\d.]/g, ''), 10),
       );
     }
     if (a > b) {
