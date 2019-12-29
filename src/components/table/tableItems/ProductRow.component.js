@@ -3,7 +3,11 @@ import './ProductRow.css';
 export class ProductRow extends Component {
   render() {
     return (
-      <tr>
+      <tr
+        style={{
+          color: this.props.product.stocked ? 'blue' : 'red',
+        }}
+      >
         <td>
           <span
             className={

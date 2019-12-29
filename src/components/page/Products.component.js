@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Filters from './forms/Filters.component';
-import ProductTable from './table/ProductTable.component';
-import ProductForm from './forms/ProductForm.component';
+import Filters from '../forms/Filters.component';
+import ProductForm from '../forms/ProductForm.component';
+import ProductTable from '../table/ProductTable.component';
 
 var PRODUCTS = {
   '1': {
@@ -48,13 +48,28 @@ var PRODUCTS = {
   },
 };
 export class Products extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filterText: '',
+      inStockOnly: false,
+      products: PRODUCTS,
+    };
+  }
   render() {
     return (
       <div>
         {/* add Filters */}
-        <Filters />
+        <Filters
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+        />
         {/* add ProductTable */}
-        <ProductTable products={PRODUCTS} />
+        <ProductTable
+          products={this.state.products}
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+        />
         {/* add ProductForm */}
         <ProductForm />
       </div>
